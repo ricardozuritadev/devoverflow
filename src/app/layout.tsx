@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 
 import ThemeProvider from "@/context/Theme";
+import NavBar from "@/components/navigation/navbar/NavBar";
 
 const inter = localFont({
     src: "./fonts/InterVf.ttf",
@@ -41,6 +42,7 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
+                    <NavBar />
                     {children}
                 </ThemeProvider>
             </body>
