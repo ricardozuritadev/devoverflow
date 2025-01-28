@@ -1,11 +1,11 @@
 "use client";
 
-import { signIn } from "@/auth";
 import { toast } from "@/hooks/use-toast";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import ROUTES from "@/constants/route";
+import { signIn } from "next-auth/react";
 
 export default function SocialAuthForm() {
     const buttonClasses =
@@ -14,7 +14,7 @@ export default function SocialAuthForm() {
     async function handleSignIn(provider: "github" | "google") {
         try {
             await signIn(provider, {
-                callbackUrl: ROUTES.HOME,
+                redirectTo: ROUTES.HOME,
                 redirect: false
             });
         } catch (error) {
