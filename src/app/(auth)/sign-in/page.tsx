@@ -1,5 +1,15 @@
+"use client";
+
+import AuthForm from "@/components/forms/auth-form/AuthForm";
+import { SignInSchema } from "@/lib/validations";
+
 export default function SignIn() {
     return (
-        <main>SignIn</main>
+        <AuthForm
+            formType="SIGN_IN"
+            schema={SignInSchema}
+            defaultValues={{ email: "", password: "" }}
+            onSubmit={(data) => Promise.resolve({ success: true, data })}
+        />
     );
 }
