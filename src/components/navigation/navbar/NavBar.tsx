@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Theme from "@/components/navigation/navbar/Theme";
+import MobileNavigation from "@/components/navigation/navbar/MobileNavigation";
 
 export default function NavBar() {
     return (
@@ -22,6 +23,7 @@ export default function NavBar() {
 
             <div className="flex-between gap-5">
                 <Theme />
+                <MobileNavigation />
             </div>
         </nav>
     );

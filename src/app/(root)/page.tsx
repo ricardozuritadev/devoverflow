@@ -22,9 +22,7 @@ export default async function Home() {
                         redirectTo: ROUTES.SIGN_IN
                     });
                 }}
-            >
-                <Button type="submit">Log out</Button>
-            </form>
+            ></form>
         </>
     );
 }
