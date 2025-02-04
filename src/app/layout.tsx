@@ -38,6 +38,15 @@ export default async function RootLayout({
 
     return (
         <html suppressHydrationWarning lang="en">
+            <head>
+                <link
+                    rel="stylesheet"
+                    type="text/css"
+                    href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+                />
+                <title>DevOverflow</title>
+            </head>
+
             <SessionProvider session={session}>
                 <body
                     className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
