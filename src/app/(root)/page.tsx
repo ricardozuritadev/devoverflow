@@ -1,8 +1,53 @@
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import ROUTES from "@/constants/route";
 
-export default async function Home() {
+import ROUTES from "@/constants/route";
+import { Question } from "@/types/question.types";
+
+import { Button } from "@/components/ui/button";
+import LocalSearch from "@/components/search/LocalSearch";
+
+const questions: Question[] = [
+    {
+        _id: "1",
+        title: "How to use React?",
+        description: "I am new",
+        tags: ["react", "javascript", "web"],
+        author: {
+            _id: "1",
+            name: "John Doe"
+        },
+        upvotes: 10,
+        answers: 5,
+        views: 100,
+        createdAt: new Date()
+    },
+    {
+        _id: "2",
+        title: "How to use Next.js?",
+        description: "I am new",
+        tags: ["next.js", "javascript", "web"],
+        author: {
+            _id: "2",
+            name: "Jane Doe"
+        },
+        upvotes: 8,
+        answers: 11,
+        views: 300,
+        createdAt: new Date()
+    }
+];
+
+type HomeProps = {
+    searchParams: Promise<{ [key: string]: string }>;
+};
+
+export default async function Home({ searchParams }: HomeProps) {
+    const { query = "" } = await searchParams;
+
+    const filteredQuestions = questions.filter((question) =>
+        question.title?.toLowerCase().includes(query?.toLowerCase())
+    );
+
     return (
         <>
             <section className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -15,13 +60,19 @@ export default async function Home() {
                     <Link href={ROUTES.ASK_QUESTION}>Ask a Question</Link>
                 </Button>
             </section>
-            <section className="mt-11">LocalSearch</section>
+            <section className="mt-11">
+                <LocalSearch
+                    route="/"
+                    imgSrc="/icons/search.svg"
+                    placeholder="Search questions..."
+                    otherClasses="flex-1"
+                />
+            </section>
             HomeFilter
             <div className="mt-10 flex w-full flex-col gap-6">
-                <p>Question card 1</p>
-                <p>Question card 2</p>
-                <p>Question card 3</p>
-                <p>Question card 4</p>
+                {filteredQuestions.map((question) => (
+                    <h2 key={question._id}>{question.title}</h2>
+                ))}
             </div>
         </>
     );
